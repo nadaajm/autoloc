@@ -1,9 +1,10 @@
 package tn.esprit.autoloc.service;
 
-import lombok.AllArgsConstructor;
-import org.springframework.stereotype.Service;
 import tn.esprit.autoloc.entities.Maintenance;
 import tn.esprit.autoloc.repository.MaintenanceRepository;
+import tn.esprit.autoloc.repository.VehiculeRepository;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -11,30 +12,30 @@ import java.util.List;
 @AllArgsConstructor
 public class MaintenanceServiceImpl implements IMaintenanceService {
 
-    private final MaintenanceRepository maintenanceRepository;
+    MaintenanceRepository maintenanceRepository;
+    VehiculeRepository vehiculeRepository;
 
-    @Override
     public List<Maintenance> retrieveAllMaintenances() {
         return maintenanceRepository.findAll();
     }
 
-    @Override
     public Maintenance retrieveMaintenance(Long maintenanceId) {
         return maintenanceRepository.findById(maintenanceId).get();
     }
 
-    @Override
-    public Maintenance addMaintenance(Maintenance maintenance) {
-        return maintenanceRepository.save(maintenance);
+    public Maintenance addMaintenance(Maintenance c) {
+        if (c.getVehicule() != null && c.getVehicule().getIdVehicule() != null) {
+            c.setVehicule(vehiculeRepository.findById(c.getVehicule().getIdVehicule()).get());
+        }
+        return maintenanceRepository.save(c);
     }
 
-    @Override
     public void removeMaintenance(Long maintenanceId) {
         maintenanceRepository.deleteById(maintenanceId);
     }
 
-    @Override
     public Maintenance modifyMaintenance(Maintenance maintenance) {
         return maintenanceRepository.save(maintenance);
     }
+
 }

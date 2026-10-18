@@ -1,9 +1,9 @@
 package tn.esprit.autoloc.service;
 
-import lombok.AllArgsConstructor;
-import org.springframework.stereotype.Service;
 import tn.esprit.autoloc.entities.Reservation;
 import tn.esprit.autoloc.repository.ReservationRepository;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -11,30 +11,26 @@ import java.util.List;
 @AllArgsConstructor
 public class ReservationServiceImpl implements IReservationService {
 
-    private final ReservationRepository reservationRepository;
+    ReservationRepository reservationRepository;
 
-    @Override
     public List<Reservation> retrieveAllReservations() {
         return reservationRepository.findAll();
     }
 
-    @Override
     public Reservation retrieveReservation(Long reservationId) {
         return reservationRepository.findById(reservationId).get();
     }
 
-    @Override
-    public Reservation addReservation(Reservation reservation) {
-        return reservationRepository.save(reservation);
+    public Reservation addReservation(Reservation c) {
+        return reservationRepository.save(c);
     }
 
-    @Override
     public void removeReservation(Long reservationId) {
         reservationRepository.deleteById(reservationId);
     }
 
-    @Override
     public Reservation modifyReservation(Reservation reservation) {
         return reservationRepository.save(reservation);
     }
+
 }

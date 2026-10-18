@@ -6,13 +6,10 @@ import java.util.List;
 
 public interface IMaintenanceService {
 
-    List<Maintenance> retrieveAllMaintenances();
+    public List<Maintenance> retrieveAllMaintenances();
+    public Maintenance retrieveMaintenance(Long maintenanceId);
+    public Maintenance addMaintenance(Maintenance c);
+    public void removeMaintenance(Long maintenanceId);
+    public Maintenance modifyMaintenance(Maintenance maintenance);
 
-    Maintenance retrieveMaintenance(Long maintenanceId);
-
-    Maintenance addMaintenance(Maintenance maintenance);
-
-    void removeMaintenance(Long maintenanceId);
-
-    Maintenance modifyMaintenance(Maintenance maintenance);
 }

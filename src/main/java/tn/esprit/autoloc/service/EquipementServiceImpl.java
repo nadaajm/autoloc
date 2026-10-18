@@ -1,9 +1,9 @@
 package tn.esprit.autoloc.service;
 
-import lombok.AllArgsConstructor;
-import org.springframework.stereotype.Service;
 import tn.esprit.autoloc.entities.Equipement;
 import tn.esprit.autoloc.repository.EquipementRepository;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -11,30 +11,26 @@ import java.util.List;
 @AllArgsConstructor
 public class EquipementServiceImpl implements IEquipementService {
 
-    private final EquipementRepository equipementRepository;
+    EquipementRepository equipementRepository;
 
-    @Override
     public List<Equipement> retrieveAllEquipements() {
         return equipementRepository.findAll();
     }
 
-    @Override
     public Equipement retrieveEquipement(Long equipementId) {
         return equipementRepository.findById(equipementId).get();
     }
 
-    @Override
-    public Equipement addEquipement(Equipement equipement) {
-        return equipementRepository.save(equipement);
+    public Equipement addEquipement(Equipement c) {
+        return equipementRepository.save(c);
     }
 
-    @Override
     public void removeEquipement(Long equipementId) {
         equipementRepository.deleteById(equipementId);
     }
 
-    @Override
     public Equipement modifyEquipement(Equipement equipement) {
         return equipementRepository.save(equipement);
     }
+
 }

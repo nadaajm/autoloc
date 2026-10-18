@@ -1,9 +1,9 @@
 package tn.esprit.autoloc.service;
 
-import lombok.AllArgsConstructor;
-import org.springframework.stereotype.Service;
 import tn.esprit.autoloc.entities.Paiement;
 import tn.esprit.autoloc.repository.PaiementRepository;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -11,30 +11,26 @@ import java.util.List;
 @AllArgsConstructor
 public class PaiementServiceImpl implements IPaiementService {
 
-    private final PaiementRepository paiementRepository;
+    PaiementRepository paiementRepository;
 
-    @Override
     public List<Paiement> retrieveAllPaiements() {
         return paiementRepository.findAll();
     }
 
-    @Override
     public Paiement retrievePaiement(Long paiementId) {
         return paiementRepository.findById(paiementId).get();
     }
 
-    @Override
-    public Paiement addPaiement(Paiement paiement) {
-        return paiementRepository.save(paiement);
+    public Paiement addPaiement(Paiement c) {
+        return paiementRepository.save(c);
     }
 
-    @Override
     public void removePaiement(Long paiementId) {
         paiementRepository.deleteById(paiementId);
     }
 
-    @Override
     public Paiement modifyPaiement(Paiement paiement) {
         return paiementRepository.save(paiement);
     }
+
 }

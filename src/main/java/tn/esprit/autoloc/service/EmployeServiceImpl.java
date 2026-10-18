@@ -1,9 +1,9 @@
 package tn.esprit.autoloc.service;
 
-import lombok.AllArgsConstructor;
-import org.springframework.stereotype.Service;
 import tn.esprit.autoloc.entities.Employe;
 import tn.esprit.autoloc.repository.EmployeRepository;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -11,30 +11,26 @@ import java.util.List;
 @AllArgsConstructor
 public class EmployeServiceImpl implements IEmployeService {
 
-    private final EmployeRepository employeRepository;
+    EmployeRepository employeRepository;
 
-    @Override
     public List<Employe> retrieveAllEmployes() {
         return employeRepository.findAll();
     }
 
-    @Override
     public Employe retrieveEmploye(Long employeId) {
         return employeRepository.findById(employeId).get();
     }
 
-    @Override
-    public Employe addEmploye(Employe employe) {
-        return employeRepository.save(employe);
+    public Employe addEmploye(Employe c) {
+        return employeRepository.save(c);
     }
 
-    @Override
     public void removeEmploye(Long employeId) {
         employeRepository.deleteById(employeId);
     }
 
-    @Override
     public Employe modifyEmploye(Employe employe) {
         return employeRepository.save(employe);
     }
+
 }

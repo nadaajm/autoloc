@@ -1,9 +1,9 @@
 package tn.esprit.autoloc.service;
 
-import lombok.AllArgsConstructor;
-import org.springframework.stereotype.Service;
 import tn.esprit.autoloc.entities.Contrat;
 import tn.esprit.autoloc.repository.ContratRepository;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -11,30 +11,31 @@ import java.util.List;
 @AllArgsConstructor
 public class ContratServiceImpl implements IContratService {
 
-    private final ContratRepository contratRepository;
+    ContratRepository contratRepository;
 
-    @Override
     public List<Contrat> retrieveAllContrats() {
         return contratRepository.findAll();
     }
 
-    @Override
     public Contrat retrieveContrat(Long contratId) {
         return contratRepository.findById(contratId).get();
     }
 
-    @Override
-    public Contrat addContrat(Contrat contrat) {
-        return contratRepository.save(contrat);
+    public Contrat addContrat(Contrat c) {
+        return contratRepository.save(c);
     }
 
-    @Override
     public void removeContrat(Long contratId) {
         contratRepository.deleteById(contratId);
     }
 
-    @Override
     public Contrat modifyContrat(Contrat contrat) {
-        return contratRepository.save(contrat);
+        Contrat existing = contratRepository.findById(contrat.getIdContrat()).get();
+        existing.setDateSignature(contrat.getDateSignature());
+        existing.setMontantTotal(contrat.getMontantTotal());
+        existing.setValide(contrat.getValide());
+        existing.setReservation(contrat.getReservation());
+        return contratRepository.save(existing);
     }
+
 }

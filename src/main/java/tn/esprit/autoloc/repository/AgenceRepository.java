@@ -1,8 +1,8 @@
 package tn.esprit.autoloc.repository;
 
+import tn.esprit.autoloc.entities.Agence;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import tn.esprit.autoloc.entities.Agence;
 
 @Repository
 public interface AgenceRepository extends JpaRepository<Agence, Long> {

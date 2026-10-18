@@ -6,13 +6,10 @@ import java.util.List;
 
 public interface IClientService {
 
-    List<Client> retrieveAllClients();
+    public List<Client> retrieveAllClients();
+    public Client retrieveClient(Long clientId);
+    public Client addClient(Client c);
+    public void removeClient(Long clientId);
+    public Client modifyClient(Client client);
 
-    Client retrieveClient(Long clientId);
-
-    Client addClient(Client client);
-
-    void removeClient(Long clientId);
-
-    Client modifyClient(Client client);
 }

@@ -1,9 +1,9 @@
 package tn.esprit.autoloc.service;
 
-import lombok.AllArgsConstructor;
-import org.springframework.stereotype.Service;
 import tn.esprit.autoloc.entities.Agence;
 import tn.esprit.autoloc.repository.AgenceRepository;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -11,30 +11,26 @@ import java.util.List;
 @AllArgsConstructor
 public class AgenceServiceImpl implements IAgenceService {
 
-    private final AgenceRepository agenceRepository;
+    AgenceRepository agenceRepository;
 
-    @Override
     public List<Agence> retrieveAllAgences() {
         return agenceRepository.findAll();
     }
 
-    @Override
     public Agence retrieveAgence(Long agenceId) {
         return agenceRepository.findById(agenceId).get();
     }
 
-    @Override
-    public Agence addAgence(Agence agence) {
-        return agenceRepository.save(agence);
+    public Agence addAgence(Agence c) {
+        return agenceRepository.save(c);
     }
 
-    @Override
     public void removeAgence(Long agenceId) {
         agenceRepository.deleteById(agenceId);
     }
 
-    @Override
     public Agence modifyAgence(Agence agence) {
         return agenceRepository.save(agence);
     }
+
 }
